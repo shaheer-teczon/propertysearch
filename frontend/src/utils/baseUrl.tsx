@@ -6,7 +6,8 @@ const getBaseUrl = () => {
   if (import.meta.env.MODE === "development") {
     return "http://localhost:8000";
   }
-  return "https://aibroker.teczonlabs.com";
+
+  return "/api";
 };
 
 export const API_URL = getBaseUrl();

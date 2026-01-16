@@ -1,0 +1,31 @@
+{
+  "version": 2,
+  "buildCommand": "cd frontend && npm install && npm run build",
+  "outputDirectory": "frontend/dist",
+  "installCommand": "cd frontend && npm install",
+  "framework": null,
+  "rewrites": [
+    { "source": "/api/chat", "destination": "/api/chat" },
+    { "source": "/api/properties/:id", "destination": "/api/properties/[id]" },
+    { "source": "/api/properties", "destination": "/api/properties" },
+    { "source": "/api/health", "destination": "/api/health" },
+    { "source": "/api/clear-session", "destination": "/api/clear-session" },
+    { "source": "/((?!api/).*)", "destination": "/index.html" }
+  ],
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Credentials", "value": "true" },
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET,OPTIONS,PATCH,DELETE,POST,PUT" },
+        { "key": "Access-Control-Allow-Headers", "value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version" }
+      ]
+    }
+  ],
+  "functions": {
+    "api/**/*.py": {
+      "maxDuration": 60
+    }
+  }
+}
